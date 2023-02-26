@@ -7,15 +7,29 @@ const genDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(keys1, keys2));
 
 
-  const filterKeys = keys.map((key) => {
-    let result = {};
+  const compare = (acc, key) => {
     // console.log(key);
-    if (key === "follow") {
-      result = "000";
-    }
+    const matchesKey = `- ${key}`;
+    const plusKey = `+ ${key}`;
+    const minusKey = `  ${key}`;
 
-    return result;
-  });
+    if (!Object.hasOwn(data2, key)) {
+      acc.push(`  ${minusKey}: ${data1[key]}`);
+    } else if (!Object.hasOwn(data1, key)) {
+      acc.push(`  ${plusKey}: ${data2[key]}`);
+    } else if (data1[key] !== data2[key]) {
+      acc.push(`  ${matchesKey}: ${data1[key]}`);
+      acc.push(`  ${plusKey}: ${data2[key]}`);
+    } else {
+      acc.push(`  ${matchesKey}: ${data2[key]}`);
+    }
+    
+    // console.log(acc);
+    return acc;
+  };
+
+const result = keys.reduce(compare, []).join('\n')
+return `\n${result}\n`;
 };
 
 export default genDiff;
