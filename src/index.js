@@ -15,7 +15,7 @@ export default (filepath1, filepath2) => {
   // console.log(ParseData1);
   // console.log(ParseData2);
   
-  // console.log( genDiff(ParseData1, ParseData2));
+  console.log( genDiff(ParseData1, ParseData2));
   genDiff(ParseData1, ParseData2);
   // console.log(ParseData1);
   // console.log(ParseData2);

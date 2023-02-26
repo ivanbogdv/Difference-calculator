@@ -9,27 +9,28 @@ const genDiff = (data1, data2) => {
 
   const compare = (acc, key) => {
     // console.log(key);
-    const matchesKey = `- ${key}`;
+    const matchesKey = `  ${key}`;
     const plusKey = `+ ${key}`;
-    const minusKey = `  ${key}`;
+    const minusKey = `- ${key}`;
 
     if (!Object.hasOwn(data2, key)) {
       acc.push(`  ${minusKey}: ${data1[key]}`);
     } else if (!Object.hasOwn(data1, key)) {
       acc.push(`  ${plusKey}: ${data2[key]}`);
     } else if (data1[key] !== data2[key]) {
-      acc.push(`  ${matchesKey}: ${data1[key]}`);
+      acc.push(`  ${minusKey}: ${data1[key]}`);
       acc.push(`  ${plusKey}: ${data2[key]}`);
     } else {
-      acc.push(`  ${matchesKey}: ${data2[key]}`);
+      acc.push(`  ${matchesKey}: ${data1[key]}`);
     }
     
     // console.log(acc);
     return acc;
   };
 
-const result = keys.reduce(compare, []).join('\n')
-return `\n${result}\n`;
+const result = keys.reduce(compare, []).join('\n');
+return `{\n${result}\n}`;
+
 };
 
 export default genDiff;
