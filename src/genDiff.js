@@ -28,7 +28,8 @@ const genDiff = (data1, data2) => {
     return acc;
   };
 
-const result = keys.reduce(compare, []).join('\n');
+const result = (keys.reduce(compare, []).join('\n'));
+result.toString();
 return `{\n${result}\n}`;
 
 };
