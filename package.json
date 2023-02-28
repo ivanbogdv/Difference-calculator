@@ -26,7 +26,9 @@
   "homepage": "https://github.com/ivanbogdv/frontend-project-46#readme",
   "dependencies": {
     "commander": "^10.0.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "path": "^0.12.7",
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "eslint": "^8.34.0"
