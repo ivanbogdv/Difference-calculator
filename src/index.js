@@ -1,12 +1,9 @@
 #!/usr/src/env node
 import { readFileSync } from 'fs';
-import _ from 'lodash';
+// import _ from 'lodash';
 import path from 'path';
 import process from 'process';
 import genDiff from './genDiff.js';
-
-
-
 
 export default (filepath1, filepath2) => {
 
@@ -25,6 +22,4 @@ export default (filepath1, filepath2) => {
   // console.log(genDiff(ParseData1, ParseData2));
   const result = genDiff(parseData1, parseData2);
   return result;
-
-
 };
