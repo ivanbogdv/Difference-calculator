@@ -1,5 +1,4 @@
 #!/usr/src/env node
-/* eslint-disable import/extensions */
 
 import { readFileSync } from 'fs';
 // import _ from 'lodash';
