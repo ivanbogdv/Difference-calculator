@@ -1,11 +1,10 @@
 #!/usr/src/env node
-import _ from "lodash";
+import _ from 'lodash';
 
 const genDiff = (data1, data2) => {
   const keys1 = _.keys(data1);
   const keys2 = _.keys(data2);
   const keys = _.sortBy(_.union(keys1, keys2));
-
 
   const compare = (acc, key) => {
     // console.log(key);
@@ -23,15 +22,14 @@ const genDiff = (data1, data2) => {
     } else {
       acc.push(`  ${matchesKey}: ${data1[key]}`);
     }
-    
+
     // console.log(acc);
     return acc;
   };
 
-const result = (keys.reduce(compare, []).join('\n'));
-result.toString();
-return `{\n${result}\n}`;
-
+  const result = (keys.reduce(compare, []).join('\n'));
+  result.toString();
+  return `{\n${result}\n}`;
 };
 
 export default genDiff;
