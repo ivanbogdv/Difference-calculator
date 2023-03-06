@@ -12,3 +12,6 @@ lint:
 
 test-coverage:
 	npm test --coverage
+
+test:
+	npx jest

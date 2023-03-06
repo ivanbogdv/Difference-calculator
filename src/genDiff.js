@@ -1,4 +1,4 @@
-#!/usr/src/env node
+#!/usr/bin/env node
 import _ from 'lodash';
 
 const genDiff = (data1, data2) => {

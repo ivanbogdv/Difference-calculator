@@ -1,4 +1,4 @@
-#!/usr/src/env node
+#!/usr/bin/env node
 
 import { readFileSync } from 'fs';
 // import _ from 'lodash';
