@@ -2,16 +2,15 @@ plugins:
   - jest
 env:
   node: true
-  es2020: true
-extends:
-  - airbnb-base
+  es2021: true
+
+extends: airbnb-base
+
+overrides: []
 parserOptions:
-  ecmaVersion: 11
+  ecmaVersion: latest
   sourceType: module
 rules:
   no-console: 0
-  import/extensions:
-    - error
-    - ignorePackages
-    - js: always
+  import/extensions: 0
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
