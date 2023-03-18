@@ -7,7 +7,6 @@ const genDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(keys1, keys2));
 
   const compare = (acc, key) => {
-    // console.log(key);
     const matchesKey = `  ${key}`;
     const plusKey = `+ ${key}`;
     const minusKey = `- ${key}`;
@@ -23,7 +22,6 @@ const genDiff = (data1, data2) => {
       acc.push(`  ${matchesKey}: ${data1[key]}`);
     }
 
-    // console.log(acc);
     return acc;
   };
 

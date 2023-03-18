@@ -7,10 +7,10 @@ import { cwd } from 'process';
 import genDiff from './genDiff.js';
 import parser from './parsers.js';
 
-const getPath = (filepath) => readFileSync(path.resolve(cwd(), filepath)).toString();
+const getPath = (filepath) => path.resolve(cwd(), filepath);
 const getFileFormat = (filepath) => path.extname(filepath).slice(1);
 
-export default (filepath1, filepath2, formatName = 'stylish') => {
+export default (filepath1, filepath2) => {
   const path1 = getPath(filepath1);
   const path2 = getPath(filepath2);
 
@@ -20,6 +20,6 @@ export default (filepath1, filepath2, formatName = 'stylish') => {
   const parseData1 = parser(data1, getFileFormat(path1));
   const parseData2 = parser(data2, getFileFormat(path2));
 
-  const result = genDiff((parseData1, parseData2), formatName);
+  const result = genDiff(parseData1, parseData2);
   return result;
 };
