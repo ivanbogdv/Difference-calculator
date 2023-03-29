@@ -4,10 +4,12 @@ import { readFileSync } from 'fs';
 // import _ from 'lodash';
 import path from 'path';
 import { cwd } from 'process';
-import genDiff from './genDiff.js';
+// import genDiff from './genDiff.js';
 import parser from './parsers.js';
+import buildAST from './buildAST.js';
 
 const getPath = (filepath) => path.resolve(cwd(), filepath);
+
 const getFileFormat = (filepath) => path.extname(filepath).slice(1);
 
 export default (filepath1, filepath2) => {
@@ -20,6 +22,6 @@ export default (filepath1, filepath2) => {
   const parseData1 = parser(data1, getFileFormat(path1));
   const parseData2 = parser(data2, getFileFormat(path2));
 
-  const result = genDiff(parseData1, parseData2);
+  const result = buildAST(parseData1, parseData2);
   return result;
 };
