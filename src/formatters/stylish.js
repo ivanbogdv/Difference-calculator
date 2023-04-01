@@ -1,4 +1,5 @@
 const makeStylish = (tree) => {
+  console.log(tree);
   const result = tree.map((item) => {
     const matchesKey = `  ${item.key}`;
     const plusKey = `+ ${item.key}`;
