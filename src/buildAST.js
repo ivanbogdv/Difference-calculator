@@ -17,7 +17,7 @@ const buildAST = (obj1, obj2) => {
     }
     if (!_.has(obj2, key)) {
       return {
-        type: 'deleted',
+        type: 'removed',
         key,
         value: obj1[key],
       };
@@ -44,4 +44,8 @@ const buildAST = (obj1, obj2) => {
   return tree;
 };
 
-export default buildAST;
+const getDifferenceTree = (obj1, obj2) => ({
+  type: 'root',
+  children: buildAST(obj1, obj2),
+});
+export default getDifferenceTree;

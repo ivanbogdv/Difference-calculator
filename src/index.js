@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { cwd } from 'process';
 import parser from './parsers.js';
-import buildAST from './buildAST.js';
+import getDifferenceTree from './buildAST.js';
 import formatter from './formatters/indexFormatter.js';
 
 const getPath = (filepath) => path.resolve(cwd(), filepath);
@@ -20,7 +20,7 @@ const genDiff = (filepath1, filepath2, format) => {
   const parseObj1 = parser(obj1, getFileFormat(path1));
   const parseObj2 = parser(obj2, getFileFormat(path2));
 
-  const result = buildAST(parseObj1, parseObj2);
+  const result = getDifferenceTree(parseObj1, parseObj2);
   return formatter(result, format);
 };
 
