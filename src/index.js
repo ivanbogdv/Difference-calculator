@@ -10,7 +10,7 @@ import formatter from './formatters/indexFormatter.js';
 const getPath = (filepath) => path.resolve(cwd(), filepath);
 const getFileFormat = (filepath) => path.extname(filepath).slice(1);
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const path1 = getPath(filepath1);
   const path2 = getPath(filepath2);
 
