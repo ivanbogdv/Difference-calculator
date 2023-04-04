@@ -26,39 +26,39 @@ const stringify = (data, depth) => {
   return joinString(lines, depth);
 };
 
-const makeStylishDiff = (tree) => {
-  const iter = (node, depth) => {
-    switch (node.type) {
-      case 'root': {
-        const result = node.children.flatMap((child) => iter(child, depth));
-        return joinString(result, depth);
-      }
-      case 'nested': {
-        // const children = node.children || [];
-        // console.log('-------------------------', node.children);
-        // const childrenToString = children.flatMap((child) => iter(child, depth + 1));
-      // return `${currentIndent(depth)}  ${node.key}: ${joinString(childrenToString, depth + 1)}`;
-        return `${getIndent(depth)}  ${node.key}: {\n${iter(node.value, depth + 1).join('\n')}\n${getIndent(depth)}${doubleSpace}}`;
-      }
-      case 'added': {
-        return `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value, depth + 1)}`;
-      }
-      case 'removed': {
-        return `${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`;
-      }
-      case 'changed': {
-        return [`${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`,
-          `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth + 1)}}`];
-      }
-      case 'unchanged': {
-        return `${currentIndent(depth)}  ${node.key}: ${stringify(node.value, depth + 1)}`;
-      }
-      default: {
-        throw new Error(`"${node.type}" type is not supported by the formatter`);
-      }
+// const makeStylishDiff = (tree) => {
+const iter = (node, depth) => {
+  switch (node.type) {
+    case 'root': {
+      const result = node.children.flatMap((child) => iter(child, depth));
+      return joinString(result, depth);
     }
-  };
-  return iter(tree, 1);
+    case 'nested': {
+      // const children = node.children || [];
+      // console.log('-------------------------', node.children);
+      // const childrenToString = children.flatMap((child) => iter(child, depth + 1));
+      // return `${currentIndent(depth)}  ${node.key}: ${joinString(childrenToString, depth + 1)}`;
+      return `${getIndent(depth)}  ${node.key}: {\n${iter(node.value, depth + 1).join('\n')}\n${getIndent(depth)}${doubleSpace}}`;
+    }
+    case 'added': {
+      return `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value, depth + 1)}`;
+    }
+    case 'removed': {
+      return `${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`;
+    }
+    case 'changed': {
+      return [`${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`,
+        `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth + 1)}}`];
+    }
+    case 'unchanged': {
+      return `${currentIndent(depth)}  ${node.key}: ${stringify(node.value, depth + 1)}`;
+    }
+    default: {
+      throw new Error(`"${node.type}" type is not supported by the formatter`);
+    }
+  }
 };
+//   return iter(tree, 1);
+// };
 
-export default makeStylishDiff;
+export default (diff) => {\n${iter(diff).join('\n')}\n};
