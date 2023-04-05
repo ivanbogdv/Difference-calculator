@@ -1,44 +1,45 @@
 #!/usr/bin/env node
 import _ from 'lodash';
 
-const buildAST = (obj1, obj2) => {
-  const keys1 = _.keys(obj1);
-  const keys2 = _.keys(obj2);
+const buildAST = (data1, data2) => {
+  const data1Keys = _.keys(data1);
+  const data2Keys = _.keys(data2);
 
-  const sortKeys = _.sortBy(_.union(keys1, keys2));
+  const sortKeys = _.union(data1Keys, data2Keys).sort();
 
   const tree = sortKeys.map((key) => {
-    if (!_.has(obj1, key)) {
+    if (!_.has(data1, key)) {
       return {
         type: 'added',
         key,
-        value: obj2[key],
+        value: data2[key],
       };
     }
-    if (!_.has(obj2, key)) {
+    if (!_.has(data2, key)) {
       return {
         type: 'removed',
         key,
-        value: obj1[key],
+        value: data1[key],
       };
-    } if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj1[key])) {
+    } if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
       return {
         type: 'nested',
         key,
-        child: buildAST(obj1[key], obj2[key]),
+        child: buildAST(data1[key], data2[key]),
       };
     }
-    if (obj1[key] === obj2[key]) {
+    if (_.isEqual(data1[key], data2[key])) {
       return {
         type: 'unchanged',
         key,
-        value: obj1[key],
+        value: data2[key],
       };
     }
     return {
       type: 'changed',
       key,
-      value: [obj1[key], obj2[key]],
+      value1: data1[key],
+      value2: data1[key],
     };
   });
   return tree;
