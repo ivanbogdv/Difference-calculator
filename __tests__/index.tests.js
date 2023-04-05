@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import { readFileSync } from 'node:fs';
+import fs from 'fs';
 import url from 'url';
 import { expect, test } from '@jest/globals';
 import genDiff from '../src/index.js';
@@ -11,11 +11,30 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const filename1 = getFixturePath('file1.json');
-const filename2 = getFixturePath('file2.json');
-const resultName = getFixturePath('file_result.txt');
-const result = readFileSync(resultName, 'utf8');
+const fileJSON1 = getFixturePath('file1.json');
+const fileJSON2 = getFixturePath('file2.json');
 
-test('file json', () => {
-  expect(genDiff(filename1, filename2)).toBe(result);
+const fileYAML1 = getFixturePath('file1.yaml');
+const fileYAML2 = getFixturePath('file2.yaml');
+
+const fileYML1 = getFixturePath('file1.yaml');
+const fileYML2 = getFixturePath('file2.yaml');
+
+const result = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const resultStylish = result('resultStylishFiles.txt');
+
+test.each([
+  {
+    file1: fileJSON1, file2: fileJSON2, formatName: 'stylish', expected: resultStylish,
+  },
+  {
+    file1: fileYAML1, file2: fileYAML2, formatName: 'stylish', expected: resultStylish,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'stylish', expected: resultStylish,
+  },
+])('diff tests', ({
+  file1, file2, formatName, expected,
+}) => {
+  expect(genDiff(file1, file2, formatName)).toBe(expected);
 });

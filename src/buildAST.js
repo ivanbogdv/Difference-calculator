@@ -37,15 +37,15 @@ const buildAST = (data1, data2) => {
     return {
       type: 'changed',
       key,
-      value1: data1[key],
-      value2: data1[key],
+      value: data1[key],
+      value2: data2[key],
     };
   });
   return children;
 };
 
-const getDifferenceTree = (obj1, obj2) => ({
+const getDifferenceTree = (data1, data2) => ({
   type: 'root',
-  children: buildAST(obj1, obj2),
+  children: buildAST(data1, data2),
 });
 export default getDifferenceTree;

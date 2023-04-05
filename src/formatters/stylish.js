@@ -9,14 +9,14 @@ const joinString = (lines, depth) => [
   '{',
   ...lines,
   `${braceIndent(depth)}}`,
-].join('\n)');
+].join('\n');
 
 const stringify = (data, depth) => {
   if (!_.isPlainObject(data)) {
     return String(data);
   }
   const keys = _.keys(data);
-  const lines = keys.map((key) => `${currentIndent(depth)} ${key}: ${stringify(data[key], depth + 1)}`);
+  const lines = keys.map((key) => `${currentIndent(depth)}  ${key}: ${stringify(data[key], depth + 1)}`);
   return joinString(lines, depth);
 };
 
@@ -24,13 +24,10 @@ const makeStylishDiff = (tree) => {
   const iter = (node, depth) => {
     switch (node.type) {
       case 'root': {
-        console.log('-------------------------', Object.is(node.children));
         const result = node.children.flatMap((child) => iter(child, depth));
         return joinString(result, depth);
       }
       case 'nested': {
-        // const children = node.children || [];
-        console.log('-------------------------', Object.is(node.children));
         const childrenToString = node.children.flatMap((child) => iter(child, depth + 1));
         return `${currentIndent(depth)}  ${node.key}: ${joinString(childrenToString, depth + 1)}`;
       }
@@ -42,7 +39,7 @@ const makeStylishDiff = (tree) => {
       }
       case 'changed': {
         return [`${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`,
-          `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth + 1)}}`];
+          `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth + 1)}`];
       }
       case 'unchanged': {
         return `${currentIndent(depth)}  ${node.key}: ${stringify(node.value, depth + 1)}`;
