@@ -5,10 +5,10 @@ import genDiff from '../src/index.js';
 
 program
   .version('0.0.1')
+  .usage('[options] <filepath1> <filepath2>')
   .description('Compares two configuration files and shows a difference.')
-  .option('-f, --format [type]', 'output format', 'stylish')
+  .option('-f, --format <type>', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
-  .arguments('<format>')
   .action((filepath1, filepath2) => {
     console.log(genDiff(filepath1, filepath2, program.opts().format));
   });

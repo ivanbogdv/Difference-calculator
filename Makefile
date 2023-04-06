@@ -2,7 +2,7 @@ install:
 	npm ci
 
 gendiff:
-	node bin/gendiff.js
+	node bin/gendiff.js -f plain ./__fixtures__/file1.json ./__fixtures__/file2.json
 
 publish:
 	npm publish --dry-run

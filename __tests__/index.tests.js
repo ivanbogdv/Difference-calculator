@@ -17,11 +17,12 @@ const fileJSON2 = getFixturePath('file2.json');
 const fileYAML1 = getFixturePath('file1.yaml');
 const fileYAML2 = getFixturePath('file2.yaml');
 
-const fileYML1 = getFixturePath('file1.yaml');
-const fileYML2 = getFixturePath('file2.yaml');
+const fileYML1 = getFixturePath('file1.yml');
+const fileYML2 = getFixturePath('file2.yml');
 
 const result = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 const resultStylish = result('resultStylishFiles.txt');
+const resultPlain = result('resultPlainFiles.txt');
 
 test.each([
   {
@@ -32,6 +33,15 @@ test.each([
   },
   {
     file1: fileYML1, file2: fileYML2, formatName: 'stylish', expected: resultStylish,
+  },
+  {
+    file1: fileJSON1, file2: fileJSON2, formatName: 'plain', expected: resultPlain,
+  },
+  {
+    file1: fileYAML1, file2: fileYAML2, formatName: 'plain', expected: resultPlain,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'plain', expected: resultPlain,
   },
 ])('diff tests', ({
   file1, file2, formatName, expected,

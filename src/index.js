@@ -5,7 +5,7 @@ import path from 'path';
 import { cwd } from 'process';
 import parser from './parsers.js';
 import getDifferenceTree from './buildAST.js';
-import formatter from './formatters/indexFormatter.js';
+import formatter from './formatters/index.js';
 
 const getPath = (filepath) => path.resolve(cwd(), filepath);
 const getFileFormat = (filepath) => path.extname(filepath).slice(1);
