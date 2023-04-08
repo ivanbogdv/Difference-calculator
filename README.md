@@ -7,7 +7,7 @@
 
 # Difference calculator 
 
-# Description
+### Description
 The difference calculator is a program that determines the difference between two data structures.
 ```bash
 {
@@ -20,28 +20,28 @@ The difference calculator is a program that determines the difference between tw
 }
 ```
 
-## Install
+### Install
 ```bash
 git clone git@github.com:ivanbogdv/frontend-project-44.git
 make install 
 make lint 
 ```
 
-## Supported formats
+### Supported formats
 ```bash
 json
 yaml
 yml
 ```
 
-## Program report form
+### Program report form
 ```bash
 stylish
 plain
 json
 ```
 
-## Instructions
+### Instructions
 ```bash
 gendiff -f format filepath1 filepath2 
 gendiff -h
