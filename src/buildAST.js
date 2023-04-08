@@ -4,7 +4,7 @@ import _ from 'lodash';
 const buildAST = (data1, data2) => {
   const data1Keys = _.keys(data1);
   const data2Keys = _.keys(data2);
-  const sortedKeys = _.union(data1Keys, data2Keys).sort();
+  const sortedKeys = _.sortBy(_.union(data1Keys, data2Keys));
 
   const children = sortedKeys.map((key) => {
     if (!_.has(data1, key)) {
