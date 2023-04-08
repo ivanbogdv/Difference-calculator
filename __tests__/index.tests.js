@@ -23,6 +23,7 @@ const fileYML2 = getFixturePath('file2.yml');
 const result = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 const resultStylish = result('resultStylishFiles.txt');
 const resultPlain = result('resultPlainFiles.txt');
+const resultJson = result('resultJsonFiles.txt');
 
 test.each([
   {
@@ -42,6 +43,9 @@ test.each([
   },
   {
     file1: fileYML1, file2: fileYML2, formatName: 'plain', expected: resultPlain,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'json', expected: resultJson,
   },
 ])('diff tests', ({
   file1, file2, formatName, expected,
