@@ -29,16 +29,16 @@ make lint
 
 ## Supported formats
 ```bash
-- json
-- yaml
-- yml
+json
+yaml
+yml
 ```
 
 ## Program report form
 ```bash
-- stylish
-- plain
-- json
+stylish
+plain
+json
 ```
 
 ## Instructions
