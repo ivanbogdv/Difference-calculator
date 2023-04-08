@@ -5,5 +5,44 @@
 
 
 
-[![asciicast](https://asciinema.org/a/UZ6SrP1mZbpDw3oueGlZT1BJv.svg)](https://asciinema.org/a/UZ6SrP1mZbpDw3oueGlZT1BJv)
-[![asciicast](https://asciinema.org/a/Vgy8CPrRdG1bzmzIPPtl90aHN.svg)](https://asciinema.org/a/Vgy8CPrRdG1bzmzIPPtl90aHN)
+# Difference calculator 
+
+# Description
+The difference calculator is a program that determines the difference between two data structures.
+```bash
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
+
+## Install
+```bash
+git clone git@github.com:ivanbogdv/frontend-project-44.git
+make install 
+make lint 
+```
+
+## Supported formats
+- json
+- yaml
+- yml
+
+## Program report form
+- stylish
+- plain
+- json
+
+## Instructions
+```bash
+gendiff -f format filepath1 filepath2 
+gendiff -h
+```
+
+### Gendiff launch example
+
+[![asciicast](https://asciinema.org/a/8YdbVr0etGx3baXqfs8zEYsrr.svg)](https://asciinema.org/a/8YdbVr0etGx3baXqfs8zEYsrr)
