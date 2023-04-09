@@ -5,7 +5,9 @@
 
 
 
-# Difference calculator 
+# Difference calculator
+<img src="logo.png" width="80">
+
 
 ### Description
 The difference calculator is a program that determines the difference between two data structures.
