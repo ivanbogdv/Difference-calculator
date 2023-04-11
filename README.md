@@ -23,7 +23,7 @@ The difference calculator is a program that determines the difference between tw
 
 ### Install
 ```bash
-git clone git@github.com:ivanbogdv/frontend-project-44.git
+git@github.com:ivanbogdv/Difference-calculator.git
 make install 
 make lint 
 ```
