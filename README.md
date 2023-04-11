@@ -5,7 +5,7 @@
 
 
 # Difference calculator
-<img src="../logo.png" width="80">
+<img src="./assets/logo.png" width="80">
 
 
 ### Description
